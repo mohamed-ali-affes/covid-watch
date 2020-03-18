@@ -10,11 +10,13 @@ class GlobalStats {
   final int active;
   final int deaths;
   final int recovered;
+  final DateTime updated;
 
   GlobalStats({
     this.cases,
     this.deaths,
     this.recovered,
+    this.updated,
   }) : this.active = cases - deaths - recovered;
 
   factory GlobalStats.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,9 @@ class GlobalStats {
       cases: json['cases'],
       deaths: json['deaths'],
       recovered: json['recovered'],
+      updated: DateTime.fromMillisecondsSinceEpoch(
+        int.parse(json['updated']),
+      ),
     );
   }
 }
